@@ -128,7 +128,7 @@ nnoremap <silent> <F8> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 
 " ========grep in vim========
 " search scope limited in the working directory
-map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 17<CR><CR>
+map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 
 
 "set background=dark	" light or dark
@@ -181,7 +181,7 @@ function! QFixToggle(forced)
         cclose
         unlet g:qfix_win
     else
-        botright copen 17
+        botright copen 7
         let g:qfix_win = bufnr("$")
         endif
 endfunction
