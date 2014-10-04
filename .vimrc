@@ -16,6 +16,9 @@
 " :cs f f RegEx   (Find file)
 " :cs f e RegEx   (Find any string that conatin RegEx)
 
+" ======global replacement======
+"/search_term
+":%s//replace_term/g
 
 " ======motion=======
 " [[ : to function head
