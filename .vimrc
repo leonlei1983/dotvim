@@ -98,7 +98,6 @@ set ai			" always set autoindenting on
 set tw=100
 set autowrite
 set modifiable
-set encoding=big5
 set winminheight=0
 "set statusline+=%F
 "set laststatus=2
