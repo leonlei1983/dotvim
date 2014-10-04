@@ -1,15 +1,14 @@
 " install vim plugin with git & bundle(pathogen)
 " cd ~/.vim/bundle
 " git clone git://github.com/tpope/vim-sensible.git
-
+" note to remove the .git* related file then push to chin33z/dotvim
 
 " ======My own KEY=======
 " \q   toggle auto indent
-" <F4> list all calls function
-" <F6> Tagbar toggle
-" <F11> gen cscope file & connect to it
-" <F12> gen ctag file
-" <F7> cscope jump to file
+" <F4> list all calls function          //cscope
+" <F6> Tagbar toggle                    //exuberant-ctags
+" <F11> gen cscope file & connect to it //cscope
+" <F7> cscope jump to file              //cscope
 " <F8> filter g/re/ result to windows
 " <c-p> CtrlP search for file name
 
@@ -210,10 +209,6 @@ endfunction
 
 "================Tagbar toggle==================
 nmap <F6> :TagbarToggle<CR>
-
-
-
-
 
 " Press F12 to generate/update tags file after modify source code
 " You must situiate in project root folder to execute it
