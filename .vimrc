@@ -128,7 +128,12 @@ nnoremap <silent> <F8> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 
 " ========grep in vim========
 " search scope limited in the working directory
-map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+
+"For Linux kenrel
+map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+
+"For IBM AMM
+"map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 
 
 "set background=dark	" light or dark
