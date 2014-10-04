@@ -219,7 +219,7 @@ nmap <F6> :TagbarToggle<CR>
 " You must situiate in project root folder to execute it
 " (jump back & foward in the source code need this)
 " You have to 'sudo apt-get install ctags  (exuberant-ctags)' first
-nmap <F12> :!ctags-exuberant -R --sort=yes --c++-kinds=+p --fields=iaS --extra=+q .<CR>
+"nmap <F12> :!ctags-exuberant -R --sort=yes --c++-kinds=+p --fields=iaS --extra=+q .<CR>
 
 " Press F11 to generate/update cscope file after modifying source code
 " You must situiate in project root folder to execute it
