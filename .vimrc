@@ -239,3 +239,9 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 
 " make the <c-p> CtrlP use the current directory as source root
 let g:ctrlp_working_path_mode = ''
+
+
+" ================easymotion=================
+map  / <Plug>(easymotion-sn)
+map  n <Plug>(easymotion-next)
+map  N <Plug>(easymotion-prev)
