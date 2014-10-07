@@ -6,6 +6,7 @@
 " ======My own KEY=======
 " \q   toggle auto indent
 " <F4> list all calls function          //cscope
+" <F5> Nerdtree toggle
 " <F6> Tagbar toggle                    //exuberant-ctags
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
@@ -209,6 +210,8 @@ function! FileSize()
 endfunction
 
 
+"===============Nerdtree toggle==============
+nmap <F5> :NERDTreeToggle<CR>
 
 "================Tagbar toggle==================
 nmap <F6> :TagbarToggle<CR>
