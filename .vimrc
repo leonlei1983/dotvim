@@ -6,7 +6,7 @@
 " ======My own KEY=======
 " \q   toggle auto indent
 " <F4> list all calls function          //cscope
-" <F5> Nerdtree toggle
+" <F8> Nerdtree toggle
 " <F6> Tagbar toggle                    //exuberant-ctags
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
@@ -128,7 +128,7 @@ set pastetoggle=<leader>q
 
 " =======Filter in vim=========
 " after searching for a text, type <F8> to redirect all lines containing the pattern to a file
-nnoremap <silent> <F8> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
+"nnoremap <silent> <F8> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 
 " ========grep in vim========
 " search scope limited in the working directory
@@ -212,7 +212,7 @@ endfunction
 
 
 "===============Nerdtree toggle==============
-nmap <F5> :NERDTreeToggle<CR>
+nmap <F8> :NERDTreeToggle<CR>
 
 "================Tagbar toggle==================
 nmap <F6> :TagbarToggle<CR>
@@ -231,6 +231,7 @@ nmap <F11> :!find . -iname *.[CH] -o -iname *.cpp -o -iname *.hpp > cscope.files
 
 "display all calls function
 nmap <F4> :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <F5> [[b%b:cs find c <C-R>=expand("<cword>")<CR><CR>
 
 "jump to the header file
 nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
@@ -244,6 +245,4 @@ map <C-b> :CtrlPBuffer<cr>
 
 
 " ================easymotion=================
-map  / <Plug>(easymotion-sn)
-map  n <Plug>(easymotion-next)
-map  N <Plug>(easymotion-prev)
+nmap s <Plug>(easymotion-s)
