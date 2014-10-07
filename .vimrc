@@ -11,7 +11,8 @@
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
 " <F8> filter g/re/ result to windows
-" <c-p> CtrlP search for file name
+" <c-p> CtrlP search for file/buffer/mru name
+" <c-b> CtrlP search for buffer name
 
 " =======COMMAND=============
 " :cs f f RegEx   (Find file)
@@ -239,6 +240,7 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 
 " make the <c-p> CtrlP use the current directory as source root
 let g:ctrlp_working_path_mode = ''
+map <C-b> :CtrlPBuffer<cr>
 
 
 " ================easymotion=================
