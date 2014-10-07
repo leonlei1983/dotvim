@@ -119,7 +119,7 @@ highlight User5 ctermfg=cyan
 highlight User6 ctermfg=white
 
 
-nnoremap <SPACE> /XXXXXXXXX<cr>
+nmap <SPACE> :nohlsearch<cr>
 
 " =====toggle auto indent(useful when pasting)======
 set pastetoggle=<leader>q
