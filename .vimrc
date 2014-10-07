@@ -10,7 +10,7 @@
 " <F6> Tagbar toggle                    //exuberant-ctags
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
-" <F8> filter g/re/ result to windows
+" <.....> filter g/re/ result to windows
 " <c-p> CtrlP search for file/buffer/mru name
 " <c-b> CtrlP search for buffer name
 
