@@ -231,7 +231,7 @@ nmap <F11> :!find . -iname *.[CH] -o -iname *.cpp -o -iname *.hpp > cscope.files
 
 "display all calls function
 nmap <F4> :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <F5> [[b%b:cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <F5> 9[{b%b:cs find c <C-R>=expand("<cword>")<CR><CR>
 
 "jump to the header file
 nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
