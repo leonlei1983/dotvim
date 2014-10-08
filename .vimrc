@@ -100,7 +100,7 @@ set showmatch
 set wildmenu
 set nowrap
 set nonu
-"set rnu
+set rnu
 
 set bs=2		" allow backspacing over everything in insert mode
 set ai			" always set autoindenting on
