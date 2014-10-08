@@ -10,7 +10,7 @@
 " <F6> Tagbar toggle                    //exuberant-ctags
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
-" <.....> filter g/re/ result to windows
+" <F9> filter search result to windows
 " <c-p> CtrlP search for file/buffer/mru name
 " <c-b> CtrlP search for buffer name
 
@@ -132,8 +132,8 @@ nmap <SPACE> :nohlsearch<cr>
 set pastetoggle=<leader>q
 
 " =======Filter in vim=========
-" after searching for a text, type <F8> to redirect all lines containing the pattern to a file
-"nnoremap <silent> <F8> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
+" after searching for a text, type <F9> to redirect all lines containing the pattern to a file
+nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 
 " ========grep in vim========
 " search scope limited in the working directory
