@@ -45,6 +45,11 @@
 " za        : toggle current fold
 " zi        : toggle ALL fold
 
+" ==========vim macro=============
+" qqXXXXXXq : put all the action/motion in reg q
+" @q        : run the reg q
+" @@        : repeat the last macro I ran
+" @q5@@     : run the reg q then repeat 5 times
 
 "============Pathogen vim plugin managment==================
 call pathogen#infect()
