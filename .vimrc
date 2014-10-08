@@ -243,6 +243,3 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 let g:ctrlp_working_path_mode = ''
 map <C-b> :CtrlPBuffer<cr>
 
-
-" ================easymotion=================
-nmap s <Plug>(easymotion-s)
