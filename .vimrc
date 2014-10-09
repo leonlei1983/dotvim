@@ -19,8 +19,8 @@
 " :cs f e RegEx   (Find any string that conatin RegEx)
 
 " ======global replacement======
-"/search_term
-":%s//replace_term/g
+" /search_term
+" :%s//replace_term/g
 
 " ======motion=======
 " [[ : to function head
@@ -51,7 +51,7 @@
 " @@        : repeat the last macro I ran
 " @q5@@     : run the reg q then repeat 5 times
 
-"============Pathogen vim plugin managment==================
+" ============Pathogen vim plugin managment==================
 call pathogen#infect()
 
 syntax on
@@ -59,13 +59,13 @@ filetype plugin on
 set ofu=syntaxcomplete#Complete
 set wildignore=*.o,*.obj,*.exe
 set diffopt+=vertical
-"set invlist
+" set invlist
 
-"set cursorcolumn
-"set nocompatible
+" set cursorcolumn
+" set nocompatible
 
 set t_Co=256
-"colorscheme desert
+" colorscheme desert
 colorscheme molokai
 
 " ===performance enhence===
@@ -81,7 +81,7 @@ set ignorecase
 set smartcase
 set incsearch
 set hlsearch
-"set nowrapscan
+" set nowrapscan
 
 " =====disable all err bell=====
 set noerrorbells
@@ -108,14 +108,14 @@ set tw=100
 set autowrite
 set modifiable
 set winminheight=0
-"set statusline+=%F
-"set laststatus=2
+" set statusline+=%F
+" set laststatus=2
 
 " =======status bar=====
 set laststatus=2
 set statusline=%4*%<\ %1*[%F]
-"set statusline+=%4*\ %5*[%{&encoding}, " encoding
-"set statusline+=%{&fileformat}]%m " file format
+" set statusline+=%4*\ %5*[%{&encoding}, " encoding
+" set statusline+=%{&fileformat}]%m " file format
 set statusline+=[%{FileSize()}]%m " file size
 set statusline+=%4*%=\ %6*%y%4*\ %3*%l%4*,\ %3*%c%4*\ \<\ %2*%p%%%4*\ \>
 highlight User1 ctermfg=red
@@ -138,14 +138,14 @@ nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 " ========grep in vim========
 " search scope limited in the working directory
 
-"For Linux kenrel
+" For Linux kenrel
 map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 
-"For IBM AMM
-"map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+" For IBM AMM
+" map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 
 
-"set background=dark	" light or dark
+" set background=dark	" light or dark
 set autoread
 
 set cursorline
@@ -161,13 +161,13 @@ highlight PmenuSbar ctermbg=darkblue
 highlight PmenuThumb ctermfg=gray
 
 if version >= 700
-"ctrl+x (run)
+" ctrl+x (run)
   map  <C-x> :mak<cr>
   map  <C-c> :tabnew<CR> 
 
-"ctrl+h(left)
+" ctrl+h(left)
   map <C-h> :tabprev<CR>
-"ctrl+l(right)
+" ctrl+l(right)
   map <C-l> :tabnext<CR>
 end
 
@@ -181,10 +181,10 @@ inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 " disbale hjkl arrow movement
-"noremap h <nop>
-"noremap j <nop>
-"noremap k <nop>
-"noremap l <nop>
+" noremap h <nop>
+" noremap j <nop>
+" noremap k <nop>
+" noremap l <nop>
 
 " ctrl+j / ctrl+k can move the edit screen up/down
 function! s:Saving_scroll(cmd)
@@ -239,17 +239,17 @@ function! CopyMatches(reg)
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
-"===============Nerdtree toggle==============
+" ===============Nerdtree toggle==============
 nmap <F8> :NERDTreeToggle<CR>
 
-"================Tagbar toggle==================
+" ================Tagbar toggle==================
 nmap <F6> :TagbarToggle<CR>
 
 " Press F12 to generate/update tags file after modify source code
 " You must situiate in project root folder to execute it
 " (jump back & foward in the source code need this)
 " You have to 'sudo apt-get install ctags  (exuberant-ctags)' first
-"nmap <F12> :!ctags-exuberant -R --sort=yes --c++-kinds=+p --fields=iaS --extra=+q .<CR>
+" nmap <F12> :!ctags-exuberant -R --sort=yes --c++-kinds=+p --fields=iaS --extra=+q .<CR>
 
 " Press F11 to generate/update cscope file after modifying source code
 " You must situiate in project root folder to execute it
@@ -257,15 +257,15 @@ nmap <F6> :TagbarToggle<CR>
 " You have to 'sudo apt-get install cscope' first
 nmap <F11> :!find . -iname *.[CH] -o -iname *.cpp -o -iname *.hpp > cscope.files ; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
 
-"display all calls function
+" display all calls function
 nmap <F4> :cs find c <C-R>=expand("<cword>")<CR><CR>
 nnoremap <F5> 9[{b%b:cs find c <C-R>=expand("<cword>")<CR><CR>
 
-"jump to the header file
+" jump to the header file
 nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 
-"display all called function
-"nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
+" display all called function
+" nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " make the <c-p> CtrlP use the current directory as source root
 let g:ctrlp_working_path_mode = ''
