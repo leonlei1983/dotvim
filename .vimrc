@@ -171,7 +171,20 @@ if version >= 700
   map <C-l> :tabnext<CR>
 end
 
-
+" disable arrow keys in normal/insert mode
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+inoremap <Up> <nop>
+inoremap <Down> <nop>
+inoremap <Left> <nop>
+inoremap <Right> <nop>
+" disbale hjkl arrow movement
+"noremap h <nop>
+"noremap j <nop>
+"noremap k <nop>
+"noremap l <nop>
 
 " ctrl+j / ctrl+k can move the edit screen up/down
 function! s:Saving_scroll(cmd)
@@ -215,6 +228,17 @@ function! FileSize()
     endif  
 endfunction
 
+" function to copy the matched strings to a file
+" Useage
+" after matching, ":CopyMatches k" to save all the match hits to register k
+" then "kp to paste the content
+function! CopyMatches(reg)
+  let hits = []
+  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
+  let reg = empty(a:reg) ? '+' : a:reg
+  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
+endfunction
+command! -register CopyMatches call CopyMatches(<q-reg>)
 
 "===============Nerdtree toggle==============
 nmap <F8> :NERDTreeToggle<CR>
