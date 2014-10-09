@@ -212,7 +212,6 @@ function! QFixToggle(forced)
         let g:qfix_win = bufnr("$")
         endif
 endfunction
-"nnoremap <leader>q :QFix<CR>
 nmap <F3> :QFix<CR>
 
 " calculate filesize in K
