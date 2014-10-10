@@ -3,6 +3,9 @@
 " git clone git://github.com/tpope/vim-sensible.git
 " note to remove the .git* related file then push to chin33z/dotvim
 
+" =====project specific setting========
+" :call ProjMake()   //tracing make file
+
 " ======My own KEY=======
 " \q   toggle auto indent
 " <F4> list all calls function          //cscope
@@ -57,7 +60,7 @@ call pathogen#infect()
 syntax on
 filetype plugin on
 set ofu=syntaxcomplete#Complete
-set wildignore=*.o,*.obj,*.exe
+set wildignore=*.o,*.obj,*.exe,*.so,*.lo,*.a
 set diffopt+=vertical
 " set invlist
 
@@ -271,3 +274,13 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 let g:ctrlp_working_path_mode = ''
 map <C-b> :CtrlPBuffer<cr>
 
+" project specific setting
+function! ProjMake()
+    map <F4> <nop>
+    map <F5> <nop>
+    map <F6> <nop>
+    map <F7> <nop>
+    map <F11> <nop>
+    map <F2> :execute "grep! -rsIw --color=auto --include=*[mM]ake* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+    let g:ctrlp_user_command = 'find %s -iname "*make*"'
+endfunction
