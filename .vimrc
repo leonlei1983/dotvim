@@ -102,7 +102,7 @@ set shiftwidth=4
 " ====display related=====
 set showmatch
 set wildmenu
-set nowrap
+set wrap
 set nonu
 set rnu
 
