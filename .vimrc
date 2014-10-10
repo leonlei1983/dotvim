@@ -5,6 +5,7 @@
 
 " =====project specific setting========
 " :call ProjMake()   //tracing make file
+" :call ProjKernel()   //tracing Linux kernel source
 
 " ======My own KEY=======
 " \q   toggle auto indent
@@ -141,7 +142,7 @@ nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
 " ========grep in vim========
 " search scope limited in the working directory
 
-" For Linux kenrel
+" For Linux kernel
 map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 
 " For IBM AMM
@@ -275,6 +276,7 @@ let g:ctrlp_working_path_mode = ''
 map <C-b> :CtrlPBuffer<cr>
 
 " project specific setting
+
 function! ProjMake()
     map <F4> <nop>
     map <F5> <nop>
@@ -283,4 +285,10 @@ function! ProjMake()
     map <F11> <nop>
     map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
     let g:ctrlp_user_command = 'find %s -iname "*make*"'
+endfunction
+
+function! ProjKernel()
+    map <F11> :!make cscope; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
+    " F2 need to tune faster
+    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,S} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 endfunction
