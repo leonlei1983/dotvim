@@ -281,6 +281,6 @@ function! ProjMake()
     map <F6> <nop>
     map <F7> <nop>
     map <F11> <nop>
-    map <F2> :execute "grep! -rsIw --color=auto --include=*[mM]ake* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+    map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
     let g:ctrlp_user_command = 'find %s -iname "*make*"'
 endfunction
