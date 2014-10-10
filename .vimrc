@@ -132,22 +132,35 @@ highlight User6 ctermfg=white
 
 nmap <SPACE> :nohlsearch<cr>
 
+" =======The Silver Searcher==========
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag to grep --cc
+  map <F2> :execute "grep! -sw --cc " . expand("<cword>") . " . " <bar> botright cw 7<CR><CR>
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  " let g:ctrlp_use_caching = 0
+else
+     " For Linux kernel
+    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+
+    " For IBM AMM
+    " map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+
+endif
+
+
 " =====toggle auto indent(useful when pasting)======
 set pastetoggle=<leader>q
 
 " =======Filter in vim=========
 " after searching for a text, type <F9> to redirect all lines containing the pattern to a file
 nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
-
-" ========grep in vim========
-" search scope limited in the working directory
-
-" For Linux kernel
-map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
-
-" For IBM AMM
-" map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
-
 
 " set background=dark	" light or dark
 set autoread
@@ -201,10 +214,6 @@ vnoremap <C-J> <Esc>:call <SID>Saving_scroll("gv1<C-V><C-D>")<CR>
 nnoremap <C-K> :call <SID>Saving_scroll("1<C-V><C-U>")<CR>
 vnoremap <C-K> <Esc>:call <SID>Saving_scroll("gv1<C-V><C-U>")<CR>
 
-
-" map %% to the current working directory
-cabbr <expr> %% expand('%:p:h')
-
 " Quickfix window toggle
 command -bang -nargs=? QFix call QFixToggle(<bang>0)
 function! QFixToggle(forced)
@@ -214,7 +223,7 @@ function! QFixToggle(forced)
     else
         botright copen 7
         let g:qfix_win = bufnr("$")
-        endif
+    endif
 endfunction
 nmap <F3> :QFix<CR>
 
@@ -275,8 +284,7 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 let g:ctrlp_working_path_mode = ''
 map <C-b> :CtrlPBuffer<cr>
 
-" project specific setting
-
+"========= project specific setting========
 function! ProjMake()
     map <F4> <nop>
     map <F5> <nop>
@@ -289,6 +297,4 @@ endfunction
 
 function! ProjKernel()
     map <F11> :!make cscope; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
-    " F2 need to tune faster
-    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,S} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
 endfunction
