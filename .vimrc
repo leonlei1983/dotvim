@@ -138,7 +138,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag to grep --cc
-  map <F2> :execute "grep! -sw --cc " . expand("<cword>") . " . " <bar> botright cw 7<CR><CR>
+  map <F2> :execute "grep! -sw --cc ".expand("<cword>") <bar> botright cw 7<CR><CR>
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
