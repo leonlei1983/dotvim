@@ -138,7 +138,7 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag to grep --cc
-  map <F2> :execute "grep! -sw --cc ".expand("<cword>") <bar> botright cw 7<CR><CR>
+  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :botright cw 7<CR>
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
@@ -291,8 +291,13 @@ function! ProjMake()
     map <F6> <nop>
     map <F7> <nop>
     map <F11> <nop>
-    map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
-    let g:ctrlp_user_command = 'find %s -iname "*make*"'
+    if executable('ag')
+        map <F2> :grep! -sw -G Make <C-R><C-W><CR> <bar> :botright cw 7<CR>
+        let g:ctrlp_user_command = 'ag %s -l --nocolor -g Make'
+    else
+        map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+        let g:ctrlp_user_command = 'find %s -iname "*make*"'
+    endif
 endfunction
 
 function! ProjKernel()
