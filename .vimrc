@@ -203,6 +203,9 @@ inoremap <Right> <nop>
 " noremap k <nop>
 " noremap l <nop>
 
+" map the %% in Ex to current editing file's path
+cnoremap <expr> %% getcmdtype( ) == ':' ?expand('%:h').'/' : '%%'
+
 " ctrl+j / ctrl+k can move the edit screen up/down
 function! s:Saving_scroll(cmd)
   let save_scroll = &scroll
