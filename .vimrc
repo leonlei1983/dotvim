@@ -109,7 +109,7 @@ set rnu
 set bs=2		" allow backspacing over everything in insert mode
 set ai			" always set autoindenting on
 set tw=100
-set autowrite
+" set autowrite
 set modifiable
 set winminheight=0
 " set statusline+=%F
