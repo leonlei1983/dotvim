@@ -130,6 +130,7 @@ highlight User5 ctermfg=cyan
 highlight User6 ctermfg=white
 
 
+imap kj <esc>
 nmap <SPACE> :nohlsearch<cr>
 
 " =======The Silver Searcher==========
