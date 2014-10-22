@@ -133,6 +133,15 @@ highlight User6 ctermfg=white
 imap kj <esc>
 nmap <SPACE> :nohlsearch<cr>
 
+"============replace the CtrlP with Command-T if exist===============
+autocmd VimEnter * :call CommandT_Replacement()
+function! CommandT_Replacement()
+    if exists(":CommandT")
+        nnoremap <c-p> :CommandT<CR>
+        nnoremap <c-b> :CommandTBuffer<CR>
+    endif
+endfunction
+
 " =======The Silver Searcher==========
 if executable('ag')
   " Use ag over grep
