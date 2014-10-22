@@ -133,6 +133,10 @@ highlight User6 ctermfg=white
 imap kj <esc>
 nmap <SPACE> :nohlsearch<cr>
 
+"======= add the mapping for incremental search =======
+map / <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+
 "============replace the CtrlP with Command-T if exist===============
 autocmd VimEnter * :call CommandT_Replacement()
 function! CommandT_Replacement()
