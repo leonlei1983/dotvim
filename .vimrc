@@ -144,6 +144,8 @@ function! CommandT_Replacement()
         nnoremap <c-p> :CommandT<CR>
         nnoremap <c-b> :CommandTBuffer<CR>
         let g:CommandTMaxFiles=100000
+        let g:CommandTMaxHeight = 10
+        let g:CommandTMaxCachedDirectories = 10
     endif
 endfunction
 
