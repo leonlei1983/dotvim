@@ -139,6 +139,7 @@ function! CommandT_Replacement()
     if exists(":CommandT")
         nnoremap <c-p> :CommandT<CR>
         nnoremap <c-b> :CommandTBuffer<CR>
+        let g:CommandTMaxFiles=100000
     endif
 endfunction
 
