@@ -218,6 +218,8 @@ inoremap <Up> <nop>
 inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
+map <BS> <nop>
+map! <BS> <nop>
 " disbale hjkl arrow movement
 " noremap h <nop>
 " noremap j <nop>
