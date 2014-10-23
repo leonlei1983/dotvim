@@ -139,9 +139,14 @@ function! CommandT_Replacement()
     if exists(":CommandT")
         nnoremap <c-p> :CommandT<CR>
         nnoremap <c-b> :CommandTBuffer<CR>
+
         let g:CommandTMaxFiles=100000
         let g:CommandTMaxHeight = 10
         let g:CommandTMaxCachedDirectories = 10
+
+        let g:CommandTCursorLeftMap = ['<nop>']
+        let g:CommandTBackspaceMap = ['<C-h>']
+        let g:CommandTCancelMap = ['<C-c>', '<Esc>']
     endif
 endfunction
 
