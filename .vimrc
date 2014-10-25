@@ -184,7 +184,7 @@ set pastetoggle=<leader>q
 
 " =======Filter in vim=========
 " after searching for a text, type <F9> to redirect all lines containing the pattern to a file
-nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:vnew<CR>:put! a<CR>
+nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:tabe<CR>:put! a<CR>
 
 " set background=dark	" light or dark
 set autoread
