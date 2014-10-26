@@ -105,6 +105,7 @@ set wildmenu
 set wrap
 set nonu
 set rnu
+set tabpagemax=50
 
 set bs=2		" allow backspacing over everything in insert mode
 set ai			" always set autoindenting on
