@@ -17,6 +17,7 @@
 " <F9> filter search result to windows
 " <c-p> CtrlP search for file/buffer/mru name
 " <c-b> CtrlP search for buffer name
+" Use F2 to grep all the hits, then :Qdo %s/old_str/new_str/gc | update
 
 " =======COMMAND=============
 " :cs f f RegEx   (Find file)
