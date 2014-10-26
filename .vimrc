@@ -140,7 +140,11 @@ function! CommandT_Replacement()
         nnoremap <c-p> :CommandT<CR>
         nnoremap <c-b> :CommandTBuffer<CR>
 
-        let g:CommandTMaxFiles=100000
+        let g:CommandTTraverseSCM = 'pwd'
+        let g:CommandTAlwaysShowDotFiles = 1
+        let g:CommandTMatchWindowReverse = 1
+
+        let g:CommandTMaxFiles = 100000
         let g:CommandTMaxHeight = 10
         let g:CommandTMaxCachedDirectories = 10
 
