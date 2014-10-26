@@ -144,9 +144,13 @@ function! CommandT_Replacement()
         let g:CommandTAlwaysShowDotFiles = 1
         let g:CommandTMatchWindowReverse = 1
 
-        let g:CommandTMaxFiles = 100000
+        let g:CommandTMaxFiles = 500000
         let g:CommandTMaxHeight = 10
         let g:CommandTMaxCachedDirectories = 10
+
+        if executable('watchman')
+            let g:CommandTFileScanner = 'watchman'
+        endif
 
         let g:CommandTCursorLeftMap = ['<nop>']
         let g:CommandTBackspaceMap = ['<C-h>']
