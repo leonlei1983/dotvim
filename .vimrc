@@ -307,7 +307,7 @@ nmap <F6> :TagbarToggle<CR>
 " You must situiate in project root folder to execute it
 " (all the cscope action need this)
 " You have to 'sudo apt-get install cscope' first
-nmap <F11> :!find . -iname *.[CH] -o -iname *.cpp -o -iname *.hpp > cscope.files ; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
+nmap <F11> :!find . -iname '*.[ch]' > cscope.files ; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
 
 " display all calls function
 nmap <F4> :cs find c <C-R>=expand("<cword>")<CR><CR>
