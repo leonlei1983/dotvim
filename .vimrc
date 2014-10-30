@@ -30,7 +30,7 @@
 " ======motion=======
 " [[ : to function head
 " { : to previous blank line
-" g* : search partial word
+" g* : search word without \<\>
 
 " =====normal mode=========
 " yiW : word sepereate by space(yank abc->df)  [act]i[block]
@@ -54,7 +54,7 @@
 " qqXXXXXXq : put all the action/motion in reg q
 " @q        : run the reg q
 " @@        : repeat the last macro I ran
-" @q5@@     : run the reg q then repeat 5 times
+" 5@q       : repeat 5 times of reg q
 
 " ============Pathogen vim plugin managment==================
 call pathogen#infect()
