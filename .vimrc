@@ -105,7 +105,7 @@ set showmatch
 set wildmenu
 set wrap
 set nonu
-set rnu
+set rnu  " rnu can be used like nu ===>  :-8,-3m9
 set tabpagemax=50
 
 set bs=2		" allow backspacing over everything in insert mode
