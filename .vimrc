@@ -163,7 +163,8 @@ endfunction
 " =======The Silver Searcher==========
 if executable('ag')
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
 
   " Use ag to grep --cc
   map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :botright cw 7<CR>
@@ -182,10 +183,6 @@ if executable('ag')
 else
      " For Linux kernel
     map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
-
-    " For IBM AMM
-    " map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h,inc,php,pre} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
-
 endif
 
 
