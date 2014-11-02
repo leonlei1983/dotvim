@@ -167,7 +167,7 @@ if executable('ag')
   set grepformat=%f:%l:%c:%m
 
   " Use ag to grep --cc
-  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :botright cw 7<CR>
+  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
@@ -182,7 +182,7 @@ if executable('ag')
   " let g:ctrlp_use_caching = 0
 else
      " For Linux kernel
-    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
 endif
 
 
@@ -258,6 +258,8 @@ function! QFixToggle(forced)
         unlet g:qfix_win
     else
         botright copen 7
+        set nornu
+        set nu
         let g:qfix_win = bufnr("$")
     endif
 endfunction
@@ -328,10 +330,10 @@ function! ProjMake()
     map <F7> <nop>
     map <F11> <nop>
     if executable('ag')
-        map <F2> :grep! -sw -G Make <C-R><C-W><CR> <bar> :botright cw 7<CR>
+        map <F2> :grep! -sw -G Make <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
         let g:ctrlp_user_command = 'ag %s -l --nocolor -g Make'
     else
-        map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> botright cw 7<CR><CR>
+        map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
         let g:ctrlp_user_command = 'find %s -iname "*make*"'
     endif
 endfunction
