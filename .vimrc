@@ -170,16 +170,8 @@ if executable('ag')
   map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden
-                                                          \ --ignore .git
-                                                          \ --ignore .svn
-                                                          \ --ignore .hg
-                                                          \ --ignore .DS_Store
-                                                          \ --ignore "**/*.pyc"
-                                                          \ -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  " let g:ctrlp_use_caching = 0
 else
      " For Linux kernel
     map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
