@@ -58,6 +58,13 @@
 
 " ============Pathogen vim plugin managment==================
 call pathogen#infect()
+call pathogen#helptags()
+
+
+
+" **************************************
+" *****    VIM SETTING CONFIG      *****
+" **************************************
 
 syntax on
 filetype plugin on
@@ -114,8 +121,6 @@ set tw=100
 " set autowrite
 set modifiable
 set winminheight=0
-" set statusline+=%F
-" set laststatus=2
 
 " =======status bar=====
 set laststatus=2
@@ -131,63 +136,23 @@ highlight User4 term=underline cterm=underline ctermfg=white
 highlight User5 ctermfg=cyan
 highlight User6 ctermfg=white
 
-
-imap kj <esc>
-nmap <SPACE> :nohlsearch<cr>
-
-"============replace the CtrlP with Command-T if exist===============
-autocmd VimEnter * :call CommandT_Replacement()
-function! CommandT_Replacement()
-    if exists(":CommandT")
-        nnoremap <c-p> :CommandT<CR>
-        nnoremap <c-b> :CommandTBuffer<CR>
-
-        let g:CommandTTraverseSCM = 'pwd'
-        let g:CommandTAlwaysShowDotFiles = 1
-        let g:CommandTMatchWindowReverse = 1
-
-        let g:CommandTMaxFiles = 500000
-        let g:CommandTMaxHeight = 10
-        let g:CommandTMaxCachedDirectories = 10
-
-        if executable('watchman')
-            let g:CommandTFileScanner = 'watchman'
-        endif
-
-        let g:CommandTCursorLeftMap = ['<nop>']
-        let g:CommandTBackspaceMap = ['<C-h>']
-        let g:CommandTCancelMap = ['<C-c>', '<Esc>']
+" calculate filesize in K
+function! FileSize()
+    let bytes = getfsize(expand("%:p"))
+    if bytes <= 0
+        return ""
+    endif
+    if bytes < 1024
+        return bytes
+    else
+        return (bytes / 1024) . "k"
     endif
 endfunction
 
-" =======The Silver Searcher==========
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m
 
-  " Use ag to grep --cc
-  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
-
-else
-     " For Linux kernel
-    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
-endif
-
-
-" =====toggle auto indent(useful when pasting)======
-set pastetoggle=<leader>q
-
-" =======Filter in vim=========
-" after searching for a text, type <F9> to redirect all lines containing the pattern to a file
-nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:tabe<CR>:put! a<CR>
-
+" =============cursorline color setting=================
 " set background=dark	" light or dark
 set autoread
-
 set cursorline
 " cterm=none -> disable underline, ctermbg=233 -> dark grey
 hi CursorLine cterm=none
@@ -200,18 +165,34 @@ highlight PmenuSel ctermbg=239 ctermfg=123
 highlight PmenuSbar ctermbg=darkblue
 highlight PmenuThumb ctermfg=gray
 
-if version >= 700
-" ctrl+x (run)
-  map  <C-x> :mak<cr>
-  map  <C-c> :tabnew<CR> 
+" =====toggle auto indent(useful when pasting)======
+set pastetoggle=<leader>q
 
-" ctrl+h(left)
-  map <C-h> :tabprev<CR>
-" ctrl+l(right)
-  map <C-l> :tabnext<CR>
+
+" **************************************
+" *****SELF-CONTAIN VIM KEY MAPPING*****
+" **************************************
+
+nmap <SPACE> :nohlsearch<cr>
+
+" =======Filter in vim=========
+" after searching for a text, type <F9> to redirect all lines containing the pattern to a file
+nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:tabe<CR>:put! a<CR>
+
+
+if version >= 700
+    map  <C-x> :mak<cr>
+
+    " vim tab manipulation
+    map  <C-c> :tabnew<CR>
+    map <C-h> :tabprev<CR>
+    map <C-l> :tabnext<CR>
 end
 
-" disable arrow keys in normal/insert mode
+" 1. kj to normal mode
+" 2. disable arrow keys in normal/insert mode,
+" 3. disable backspace
+imap kj <esc>
 noremap <Up> <nop>
 noremap <Down> <nop>
 noremap <Left> <nop>
@@ -228,7 +209,7 @@ map! <BS> <nop>
 " noremap k <nop>
 " noremap l <nop>
 
-" map the %% in Ex to current editing file's path
+" ========map the %% in Ex to current editing file's path ===========
 cnoremap <expr> %% getcmdtype( ) == ':' ?expand('%:h').'/' : '%%'
 
 " ctrl+j / ctrl+k can move the edit screen up/down
@@ -257,18 +238,6 @@ function! QFixToggle(forced)
 endfunction
 nmap <F3> :QFix<CR>
 
-" calculate filesize in K
-function! FileSize()  
-    let bytes = getfsize(expand("%:p"))  
-    if bytes <= 0  
-        return "" 
-    endif  
-    if bytes < 1024  
-        return bytes  
-    else  
-        return (bytes / 1024) . "k" 
-    endif  
-endfunction
 
 " function to copy the matched strings to a file
 " Useage
@@ -282,12 +251,19 @@ function! CopyMatches(reg)
 endfunction
 command! -register CopyMatches call CopyMatches(<q-reg>)
 
+
+
+" *****************************************************
+" ***** VIM PLUGIN & EXTERNAL EXE SETTING/MAPPING *****
+" *****************************************************
+
 " ===============Nerdtree toggle==============
 nmap <F8> :NERDTreeToggle<CR>
 
 " ================Tagbar toggle==================
 nmap <F6> :TagbarToggle<CR>
 
+" ================== cscope setting =====================
 " Press F12 to generate/update tags file after modify source code
 " You must situiate in project root folder to execute it
 " (jump back & foward in the source code need this)
@@ -310,7 +286,50 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " display all called function
 " nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" make the <c-p> CtrlP use the current directory as source root
+"============replace the CtrlP with Command-T if exist===============
+autocmd VimEnter * :call CommandT_Replacement()
+function! CommandT_Replacement()
+    if exists(":CommandT")
+        nnoremap <c-p> :CommandT<CR>
+        nnoremap <c-b> :CommandTBuffer<CR>
+
+        let g:CommandTTraverseSCM = 'pwd'
+        let g:CommandTAlwaysShowDotFiles = 1
+        let g:CommandTMatchWindowReverse = 1
+
+        let g:CommandTMaxFiles = 500000
+        let g:CommandTMaxHeight = 10
+        let g:CommandTMaxCachedDirectories = 10
+
+        " if executable('watchman')
+        "     let g:CommandTFileScanner = 'watchman'
+        " endif
+
+        let g:CommandTCursorLeftMap = ['<nop>']
+        let g:CommandTBackspaceMap = ['<C-h>']
+        let g:CommandTCancelMap = ['<C-c>', '<Esc>']
+    endif
+endfunction
+
+" =======The Silver Searcher==========
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor\ --column
+  set grepformat=%f:%l:%c:%m
+
+  " Use ag to grep --cc
+  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
+
+else
+     " For Linux kernel
+    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
+endif
+
+
+" ============= CtrlP setting =================
 let g:ctrlp_working_path_mode = ''
 map <C-b> :CtrlPBuffer<cr>
 
