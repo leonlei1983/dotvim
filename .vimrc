@@ -343,11 +343,11 @@ function! ProjMake()
     if executable('ag')
         map <F2> :grep! -sw -G Make <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
         let g:ctrlp_user_command = 'ag %s -l --nocolor -g Make'
-        nmap <F12> :!ag -l --nocolor -g Make > ctags.files.list && ctags -L ctags.files.list --language-force=Make<CR>
+        nmap <F12> :!ag -l --nocolor -g Make > ctags.files.list && ctags -L ctags.files.list --language-force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
     else
         map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
         let g:ctrlp_user_command = 'find %s -iname "*make*"'
-        nmap <F12> :!find . -iname 'make*' > ctags.files.list && ctags -L ctags.files.list --language    -force=Make<CR>
+        nmap <F12> :!find . -iname 'make*' > ctags.files.list && ctags -L ctags.files.list --language    -force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
     endif
 endfunction
 
