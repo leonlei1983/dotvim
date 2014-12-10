@@ -181,7 +181,7 @@ nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:tabe<CR>:put! a<CR>
 
 
 if version >= 700
-    map  <C-x> :mak<cr>
+    " map  <C-x> :mak<cr>
 
     " vim tab manipulation
     map  <C-c> :tabnew<CR>
@@ -347,7 +347,7 @@ function! ProjMake()
     else
         map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
         let g:ctrlp_user_command = 'find %s -iname "*make*"'
-        nmap <F12> :!find . -iname 'make*' > ctags.files.list && ctags -L ctags.files.list --language    -force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
+        nmap <F12> :!find . -iname 'make*' > ctags.files.list && ctags -L ctags.files.list --language-force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
     endif
 endfunction
 
