@@ -4,4 +4,4 @@ Installation:
 
 Create symlinks in home directory:
 
-    ln -s ~/.vim/.vimrc ~/.vimrc
+    ln -s ~/.vim/vimrc ~/.vimrc
