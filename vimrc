@@ -189,20 +189,20 @@ if version >= 700
     map <C-l> :tabnext<CR>
 end
 
-" 1. kj to normal mode
-" 2. disable arrow keys in normal/insert mode,
-" 3. disable backspace
-imap kj <esc>
-noremap <Up> <nop>
-noremap <Down> <nop>
-noremap <Left> <nop>
-noremap <Right> <nop>
-inoremap <Up> <nop>
-inoremap <Down> <nop>
-inoremap <Left> <nop>
-inoremap <Right> <nop>
-map <BS> <nop>
-map! <BS> <nop>
+" disable arrow keys in normal/insert mode,
+" noremap <Up> <nop>
+" noremap <Down> <nop>
+" noremap <Left> <nop>
+" noremap <Right> <nop>
+" inoremap <Up> <nop>
+" inoremap <Down> <nop>
+" inoremap <Left> <nop>
+" inoremap <Right> <nop>
+
+" disable backspace
+" map <BS> <nop>
+" map! <BS> <nop>
+
 " disbale hjkl arrow movement
 " noremap h <nop>
 " noremap j <nop>
