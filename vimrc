@@ -321,7 +321,7 @@ if executable('ag')
   map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --hidden -g *'
 
 else
      " For Linux kernel
