@@ -283,6 +283,15 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " display all called function
 " nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+" =============Command-T options================
+if &term =~ "xterm" || &term =~ "screen"
+    let g:CommandTCancelMap = ['<ESC>']
+endif
+
+let g:CommandTBackspaceMap = ['<C-h>', '<BS>']
+let g:CommandTCursorLeftMap = ''
+let g:CommandTMaxFiles = 70000
+nnoremap <silent> <Leader>t :CommandT /root/nasx86_4-2-0-x86_64_bs/Model<CR>
 " =======The Silver Searcher==========
 if executable('ag')
   " Use ag over grep
