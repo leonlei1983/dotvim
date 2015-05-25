@@ -15,9 +15,6 @@
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
 " <F9> filter search result to windows
-" <c-p> CtrlP search for file/buffer/mru name
-" <c-b> CtrlP search for buffer name
-" Use F2 to grep all the hits, then :Qdo %s/old_str/new_str/gc | update
 
 " =======COMMAND=============
 " :cs f f RegEx   (Find file)
@@ -286,31 +283,6 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " display all called function
 " nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-"============replace the CtrlP with Command-T if exist===============
-autocmd VimEnter * :call CommandT_Replacement()
-function! CommandT_Replacement()
-    if exists(":CommandT")
-        nnoremap <c-p> :CommandT<CR>
-        nnoremap <c-b> :CommandTBuffer<CR>
-
-        let g:CommandTTraverseSCM = 'pwd'
-        let g:CommandTAlwaysShowDotFiles = 1
-        let g:CommandTMatchWindowReverse = 1
-
-        let g:CommandTMaxFiles = 500000
-        let g:CommandTMaxHeight = 10
-        let g:CommandTMaxCachedDirectories = 10
-
-        " if executable('watchman')
-        "     let g:CommandTFileScanner = 'watchman'
-        " endif
-
-        let g:CommandTCursorLeftMap = ['<nop>']
-        let g:CommandTBackspaceMap = ['<C-h>']
-        let g:CommandTCancelMap = ['<C-c>', '<Esc>']
-    endif
-endfunction
-
 " =======The Silver Searcher==========
 if executable('ag')
   " Use ag over grep
@@ -320,36 +292,10 @@ if executable('ag')
   " Use ag to grep --cc
   map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --hidden -g *'
-
 else
      " For Linux kernel
     map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
 endif
-
-
-" ============= CtrlP setting =================
-let g:ctrlp_working_path_mode = ''
-map <C-b> :CtrlPBuffer<cr>
-
-"========= project specific setting========
-function! ProjMake()
-    map <F4> <nop>
-    map <F5> <nop>
-    map <F6> <nop>
-    map <F7> <nop>
-    map <F11> <nop>
-    if executable('ag')
-        map <F2> :grep! -sw -G Make <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
-        let g:ctrlp_user_command = 'ag %s -l --nocolor -g Make'
-        nmap <F12> :!ag -l --nocolor -g Make > ctags.files.list && ctags -L ctags.files.list --language-force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
-    else
-        map <F2> :execute "grep! -rsIw --color=auto --include=*[mM][aA][kK][eE]* . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
-        let g:ctrlp_user_command = 'find %s -iname "*make*"'
-        nmap <F12> :!find . -iname 'make*' > ctags.files.list && ctags -L ctags.files.list --language-force=Make --regex-make="/^([A-Z_]+):/\1/"<CR>
-    endif
-endfunction
 
 function! ProjKernel()
     map <F11> :!make cscope; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
