@@ -14,7 +14,6 @@
 " <F6> Tagbar toggle                    //exuberant-ctags
 " <F11> gen cscope file & connect to it //cscope
 " <F7> cscope jump to file              //cscope
-" <F9> filter search result to windows
 
 " =======COMMAND=============
 " :cs f f RegEx   (Find file)
@@ -172,11 +171,6 @@ set pastetoggle=<leader>q
 
 nmap <SPACE> :nohlsearch<cr>
 
-" =======Filter in vim=========
-" after searching for a text, type <F9> to redirect all lines containing the pattern to a file
-nnoremap <silent> <F9> :redir @a<CR>:g//<CR>:redir END<CR>:tabe<CR>:put! a<CR>
-
-
 if version >= 700
     " map  <C-x> :mak<cr>
 
@@ -234,20 +228,6 @@ function! QFixToggle(forced)
     endif
 endfunction
 nmap <F3> :QFix<CR>
-
-
-" function to copy the matched strings to a file
-" Useage
-" after matching, ":CopyMatches k" to save all the match hits to register k
-" then "kp to paste the content
-function! CopyMatches(reg)
-  let hits = []
-  %s//\=len(add(hits, submatch(0))) ? submatch(0) : ''/ge
-  let reg = empty(a:reg) ? '+' : a:reg
-  execute 'let @'.reg.' = join(hits, "\n") . "\n"'
-endfunction
-command! -register CopyMatches call CopyMatches(<q-reg>)
-
 
 
 " *****************************************************
