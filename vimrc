@@ -19,26 +19,12 @@
 " :cs f f RegEx   (Find file)
 " :cs f e RegEx   (Find any string that conatin RegEx)
 
-" ======global replacement======
-" /search_term
-" :%s//replace_term/g
-
 " ======motion=======
 " [[ : to function head
 " { : to previous blank line
 " g* : search word without \<\>
 
-" =====normal mode=========
-" yiW : word sepereate by space(yank abc->df)  [act]i[block]
-" vit : copy inner tag <a>XXXXXX</a>
-" 2daw : delete two words
-" gg=G indent the current file   [act]to[pos]
-" A : jump to line tail and insert
-
 " ==========insert mode==========
-" ^u : backspace a line
-" ^w : backspace a word
-" ^h : backspace a letter
 " ^t / ^d : indent current line in insert mode
 
 " ============vimdiff===============
