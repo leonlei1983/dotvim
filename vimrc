@@ -1,12 +1,3 @@
-" install vim plugin with git & bundle(pathogen)
-" cd ~/.vim/bundle
-" git clone git://github.com/tpope/vim-sensible.git
-" note to remove the .git* related file then push to chin33z/dotvim
-
-" =====project specific setting========
-" :call ProjMake()   //tracing make file
-" :call ProjKernel()   //tracing Linux kernel source
-
 " ======My own KEY=======
 " \q   toggle auto indent
 " <F4> list all calls function          //cscope
@@ -24,19 +15,10 @@
 " { : to previous blank line
 " g* : search word without \<\>
 
-" ==========insert mode==========
-" ^t / ^d : indent current line in insert mode
-
 " ============vimdiff===============
 " ]c        : next diff
 " za        : toggle current fold
 " zi        : toggle ALL fold
-
-" ==========vim macro=============
-" qqXXXXXXq : put all the action/motion in reg q
-" @q        : run the reg q
-" @@        : repeat the last macro I ran
-" 5@q       : repeat 5 times of reg q
 
 " ============Pathogen vim plugin managment==================
 call pathogen#infect()
@@ -248,31 +230,4 @@ nmap <F7> :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " display all called function
 " nmap <F3> :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" =============Command-T options================
-if &term =~ "xterm" || &term =~ "screen"
-    let g:CommandTCancelMap = ['<ESC>']
-endif
-
-let g:CommandTBackspaceMap = ['<C-h>', '<BS>']
-let g:CommandTCursorLeftMap = ''
-let g:CommandTMaxFiles = 70000
-if isdirectory("/root/nasx86_4-2-0-x86_64_bs/Model")
-    nnoremap <silent> <Leader>t :CommandT /root/nasx86_4-2-0-x86_64_bs/Model<CR>
-endif
-" =======The Silver Searcher==========
-if executable('ag')
-  " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor\ --column
-  set grepformat=%f:%l:%c:%m
-
-  " Use ag to grep --cc
-  map <F2> :grep! -sw --cc <C-R><C-W><CR> <bar> :call QFixToggle(1)<CR>
-
-else
-     " For Linux kernel
-    map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
-endif
-
-function! ProjKernel()
-    map <F11> :!make cscope; cscope -b -q<CR>:cs kill -1<CR>:cs add cscope.out<CR>
-endfunction
+map <F2> :execute "grep! -rsIw --color=auto --include=*.{c,h} . -e " . expand("<cword>") . " " <bar> call QFixToggle(1)<CR><CR>
