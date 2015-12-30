@@ -40,6 +40,9 @@ set diffopt+=vertical
 " set cursorcolumn
 " set nocompatible
 
+" disable split windows resize by mouse
+set mouse=""
+
 set t_Co=256
 " colorscheme desert
 colorscheme molokai
@@ -141,6 +144,10 @@ set pastetoggle=<leader>q
 
 nmap <SPACE> :nohlsearch<cr>
 
+" keep selection after indenting/dedenting
+xnoremap < <gv
+xnoremap > >gv
+
 if version >= 700
     " map  <C-x> :mak<cr>
 
@@ -203,6 +210,9 @@ nmap <F3> :QFix<CR>
 " *****************************************************
 " ***** VIM PLUGIN & EXTERNAL EXE SETTING/MAPPING *****
 " *****************************************************
+
+" ================bazel file commentary config=============
+autocmd FileType bazel setlocal commentstring=#\ %s
 
 " ===============Nerdtree toggle==============
 nmap <F8> :NERDTreeToggle<CR>
