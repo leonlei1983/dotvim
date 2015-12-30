@@ -44,6 +44,9 @@ set t_Co=256
 " colorscheme desert
 colorscheme molokai
 
+" force the vim open text file with Unix linebreak
+set ff=unix
+
 " ===performance enhence===
 set lazyredraw
 
